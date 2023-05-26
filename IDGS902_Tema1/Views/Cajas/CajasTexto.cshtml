@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "CajasTexto";
+}
+
+<h2>CajasTexto</h2>
+
+@using (Html.BeginForm("GenerarInputs", "Cajas", FormMethod.Post))
+{
+    <label>Ingresa el número de inputs que deseas generar:</label>
+    <br />
+    <input type="number" name="numero" min="1" max="10" id="numero" required/>
+    <br />
+    <input type="submit" class="btn btn-info" value="Generar" />
+}
+<br />
+
+@if (ViewBag.Mensaje != null)
+{
+    <p>@ViewBag.Mensaje</p>
+}
+
+
+
+@if (ViewBag.Inputs != null)
+{
+    var inputs = ViewBag.Inputs;
+    using (Html.BeginForm("CalcularPromedio", "Cajas", FormMethod.Post))
+    {
+        for (int i = 0; i < inputs.Count; i++)
+        {
+            var input = inputs[i];
+            <input type="number" min="1" max="10" name="numeros[@i]" required />
+            <br />
+        }
+        <br />
+        <input type="submit" class="btn btn-primary" value="Calcular" />
+    }
+}
+
+@if (ViewBag.Promedio != null && ViewBag.NumerosRepetidos != null)
+{
+    <p>Suma: @ViewBag.Promedio</p>
+    <p>
+        Números Repetidos:
+        @{
+            var numerosRepetidos = ViewBag.NumerosRepetidos as List<int>;
+            if (numerosRepetidos.Any())
+            {
+                var numerosRepetidosString = string.Join(", ", numerosRepetidos);
+                @numerosRepetidosString
+            }
+            else
+            {
+                @Html.Raw("Ninguno")
+            }
+        }
+    </p>
+}

@@ -1,0 +1,64 @@
+﻿@model List<IDGS902_Tema1.Models.Palabra>
+
+@{
+    ViewBag.Title = "Diccionario";
+}
+<br />
+<h2>Diccionario (Agrega nuevas palabras)</h2>
+
+@using (Html.BeginForm("Guardar", "Diccionario", FormMethod.Post))
+{
+    <div>
+        <label>Introduzca la palabra en español:</label>
+        <br />
+        <input type="text" name="palabraEspañol" required />
+    </div>
+    <br />
+    <div>
+        <label>Introduzca la palabra en inglés:</label>
+        <br />
+        <input type="text" name="palabraIngles" required />
+        <br />
+    </div>
+    <br />
+    <input class="btn btn-outline-info" type="submit" value="Guardar" />
+    <br />
+}
+
+@using (Html.BeginForm("Mostrar", "Diccionario", FormMethod.Get))
+{
+    <br />
+    <input class="btn btn-outline-success" type="submit" value="Mostrar" />
+    <br />
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    <br />
+    <h3>Registro de Palabras del Diccionario</h3>
+    <table class="table table-hover table-primary table-bordered">
+        <thead class="thead-blue">
+            <tr>
+                <th class="bg-primary text-white">Palabra en Español</th>
+                <th class="bg-primary text-white">Palabra en Inglés</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var palabra in Model)
+            {
+                <tr>
+                    <td>@palabra.palabraEspañol</td>
+                    <td>@palabra.palabraIngles</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <form method="post" action="@Url.Action("Ocultar", "Diccionario")">
+        <input class="btn btn-outline-secondary" type="submit" value="Ocultar" />
+    </form>
+
+    <br />
+}
+
+@Html.ActionLink("Buscar palabra", "DiccionarioBuscador", null, new { @class = "btn btn-link" })

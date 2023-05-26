@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Diccionario Buscador";
+}
+<br />
+<h2>Diccionario Buscador de Traducciones</h2>
+
+@using (Html.BeginForm("Buscar", "Diccionario", FormMethod.Post))
+{
+    <div>
+        <label>Introduzca la palabra que desea buscar en el otro idioma:</label>
+        <br />
+        <input type="text" name="palabra" required />
+        <br />
+    </div>
+    <br />
+    <div>
+        <label>Selecciona el idioma al que deseas traducirlo:</label>
+        <br />
+        <div>
+            <input type="radio" name="idioma" value="Español" checked /> Español
+            <input type="radio" name="idioma" value="Inglés" /> Inglés
+        </div>
+    </div>
+    <br />
+    <input type="submit" value="Buscar" />
+    <br />
+}
+<br />
+@if (ViewBag.Resultado != null)
+{
+    <div>
+        <h3>Resultado:</h3>
+        <textarea>@ViewBag.Resultado</textarea>
+    </div>
+}

@@ -1,0 +1,84 @@
+﻿@model IDGS902_Tema1.Models.Triangulo
+
+@{
+    ViewBag.Title = "Determinar Triangulo";
+}
+
+<h2>Determinar Triangulo</h2>
+
+@using (Html.BeginForm("DeterminarTriangulo", "Triangulo", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col">
+            <b><label>Punto A:</label></b>
+            <div>
+                <label>Introduzca la coordenada x1:</label>
+                <br />
+                <input type="number" name="x1" required />
+            </div>
+            <br />
+            <div>
+                <label>Introduzca la coordenada y1:</label>
+                <br />
+                <input type="number" name="y1" required />
+                <br />
+            </div>
+        </div>
+
+        <div class="col">
+            <b><label>Punto B:</label></b>
+            <div>
+                <label>Introduzca la coordenada x2:</label>
+                <br />
+                <input type="number" name="x2" required />
+            </div>
+            <br />
+            <div>
+                <label>Introduzca la coordenada y2:</label>
+                <br />
+                <input type="number" name="y2" required />
+                <br />
+            </div>
+        </div>
+
+        <div class="col">
+            <b><label>Punto C:</label></b>
+            <div>
+                <label>Introduzca la coordenada x3:</label>
+                <br />
+                <input type="number" name="x3" required />
+            </div>
+            <br />
+            <div>
+                <label>Introduzca la coordenada y3:</label>
+                <br />
+                <input type="number" name="y3" required />
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <input class="btn btn-outline-info" type="submit" value="Calcular" />
+    <br />
+}
+
+@if (Model.Resultado == "Es un triángulo")
+{
+    <br />
+    <h3>RESULTADO:</h3>
+    <h4>Es un triángulo, a continuación se muestran los detalles:</h4>
+    <h4>Tipo de triángulo: @Model.TipoTriangulo</h4>
+    <h4>Área del triángulo: @Model.Area</h4>
+}
+else if (Model.Resultado == "No es un triángulo")
+{
+    <br />
+    <h3>RESULTADO:</h3>
+    <h4>No es un triángulo.</h4>
+}
+else
+{
+    <br />
+}
+
